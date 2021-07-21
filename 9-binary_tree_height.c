@@ -7,26 +7,38 @@
  */
 size_t binary_tree_height(const binary_tree_t *tree)
 {
-	size_t a, b;
+	int rows = traverse_rows(tree);
+
+	if (rows == 0)
+	{
+		return (0);
+	}
+
+	return (rows - 1);
+}
+/**
+ * traverse_rows - counts rows of tree
+ * @tree: tree to be evaluated
+ *
+ * Return: rows, or 0 on failure
+ */
+int traverse_rows(const binary_tree_t *tree)
+{
+	int left;
+	int right;
 
 	if (tree == NULL)
 	{
 		return (0);
 	}
-	a = binary_tree_height(tree->left);
-	b = binary_tree_height(tree->right);
-	return (_findmax(a, b) + 1);
-}
 
-/**
- * _findmax - finds the maximum
- * @a: node to compare
- * @b: node to compare
- * Return: max
- */
-int _findmax(int a, int b)
-{
-	if (a > b)
-		return (a);
-	return (b);
+	left = traverse_rows(tree->left);
+	right = traverse_rows(tree->right);
+
+	if (left > right)
+	{
+		return (left + 1);
+	}
+
+	return (right + 1);
 }
