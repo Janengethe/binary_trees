@@ -36,6 +36,7 @@ typedef struct binary_tree_s heap_t;
 /*helper functions prototypes*/
 void binary_tree_print(const binary_tree_t *);
 int traverse_rows(const binary_tree_t *tree);
+int compare_branches(const binary_tree_t *tree);
 
 /*Tasks prototypes*/
 binary_tree_t *binary_tree_node(binary_tree_t *parent, int value);
